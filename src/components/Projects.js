@@ -42,7 +42,7 @@ export default class Projects extends Component {
                     </div>
                 </div>
             )
-        })
+        });
 
         // console.log(userProjects);
 

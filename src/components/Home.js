@@ -11,7 +11,7 @@ export default class Home extends Component {
         super();
 
         this.state = {
-            currentProject : null,
+            thisProject : null,
             projectSummary: ''
         }
 
@@ -23,17 +23,20 @@ export default class Home extends Component {
     }
 
     async handleSetCurrentProject(projectId) {
-        let {userProjects} = this.props;
 
-        let filteredProject = await userProjects.filter(function (project, index, arr) {
-            return (project.id === projectId)
+        let ref = firebase.database().ref("projects").orderByChild("id").equalTo(projectId);
+      
+        ref.on('child_added', snapshot => {
+          let project = snapshot.val();
+        //   userProjects.unshift(project)
+          this.setState({
+              thisProject : project,
+              projectSummary : project.summary
+          });
+    
+          console.log(this.state.thisProject);
+    
         });
-
-        this.setState({ 
-            currentProject : filteredProject[0],
-            projectSummary : filteredProject[0].summary
-        });
-
 
     }
 
@@ -45,7 +48,7 @@ export default class Home extends Component {
     }
 
     updateProjectSummary = debounce(() => {  
-        let projectId = this.state.currentProject.id;
+        let projectId = this.state.thisProject.id;
         let ref = firebase.database().ref("projects").orderByChild("id").equalTo(projectId);
         let {projectSummary} = this.state;
         
@@ -62,7 +65,7 @@ export default class Home extends Component {
 
     render() {
         
-        let project = this.state.currentProject;
+        let project = this.state.thisProject;
 
         return (
         <div className="grid-container">
