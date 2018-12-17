@@ -29,7 +29,7 @@ export default class NewProjectForm extends Component {
         let newProject = {
             id : uiud(),
             title : projectTitle,
-            summary : '',
+            summary : 'This is where the details of your project goes. You should edit this',
             dateCreated : Date.now(),
             deadline : null,
             owner : this.props.user.email,

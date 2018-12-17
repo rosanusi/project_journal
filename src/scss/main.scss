@@ -15,16 +15,16 @@ button {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: #eaeaea;
+    color: #cdcdcd;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-    color: #eaeaea;
+    color: #cdcdcd;
 }
 :-ms-input-placeholder { /* IE 10+ */
-    color: #eaeaea;
+    color: #cdcdcd;
 }
 :-moz-placeholder { /* Firefox 18- */
-    color: #eaeaea;
+    color: #cdcdcd;
 }
 
 .main-wrap {
@@ -80,6 +80,12 @@ button {
         font-size: 14px;
         border-bottom: 1px solid #757575;
     }
+}
+
+.icon-btn {
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
 .projects-menu {
@@ -147,19 +153,23 @@ button {
 }
 
 .project-pane {
-    
+    position: relative;
+    width: 100%;
+
     .project-title {
         color: #575757;
         font-size: 20px;
         font-weight: 600;
+        margin-bottom: 24px;
     }
 
-}
+    .project-summary {
+        position: relative;
+        width: 100%;
 
+        font-size: 16px;
+        border: none;
+        // padding: 24px;
+    }
 
-
-.icon-btn {
-    margin: 0;
-    padding: 0;
-    border: none;
 }
