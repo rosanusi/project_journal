@@ -1,0 +1,165 @@
+@import 'reset';
+
+html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+button {
+    cursor: pointer;
+}
+
+#root {
+    height: 100%;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #eaeaea;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: #eaeaea;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: #eaeaea;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: #eaeaea;
+}
+
+.main-wrap {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.grid-container {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    // align-items: flex-start;
+
+    .left-bar {
+        width: 300px;
+        border-right: 1px solid #f0F0F0;
+        padding: 32px;
+    }
+
+    .main-page {
+        display: flex;
+        flex-flow : row;
+        margin: 0 auto;
+        width: 648px;
+        padding: 32px;
+        padding-top: 100px;
+    }
+}
+
+
+.currentUser {
+    border: 1px solid #eee;
+    position: relative;
+    padding: 12px;
+    border-radius: 8px;    
+
+    .name {
+        color: #555;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .logout-btn {
+        color: #111;
+        position: absolute;
+        right: 12px;
+        margin-left: 8px;
+        border: none;
+        padding: 0;
+        font-size: 14px;
+        border-bottom: 1px solid #757575;
+    }
+}
+
+.projects-menu {
+    margin-top: 32px;
+
+    .title {
+        position: relative;
+        font-size:  12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #949494;
+        vertical-align: middle;
+
+    }
+
+    .addProject-btn {
+        position: absolute;
+        right: 0;
+        top: -6px;
+
+    }
+
+    .newProject-form {
+        margin-top: 12px;
+        
+        input {
+            width: 100%;
+            border: none;
+
+            font-size: 16px;
+            padding-bottom: 8px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .project-link {
+        margin-top: 12px;
+
+        .project-icon {
+            margin-right: 8px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .project-link-brief {
+            display: inline-block;
+            vertical-align: top;
+
+            .project-title {
+                padding: 0;
+                margin: 0;
+                text-align: left;
+                border: none;
+    
+                font-size: 16px;
+                color: #595959;
+            }
+    
+        }
+    }
+}
+
+.project-pane {
+    
+    .project-title {
+        color: #575757;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+}
+
+
+
+.icon-btn {
+    margin: 0;
+    padding: 0;
+    border: none;
+}

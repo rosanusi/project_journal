@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^5.7.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "react-textarea-autosize": "^7.1.0",
+    "uuidv4": "^2.0.0"
   },
   "scripts": {
     "css": "sass --watch src/scss/:src/css/",
