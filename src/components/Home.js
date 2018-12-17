@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import firebase from './../firebase.js';
 import Projects from './Projects';
 import ProjectPane from './project-pane/ProjectPane';
+import Todos from './project-pane/Todos';
 import Textarea from 'react-textarea-autosize';
 import { debounce } from 'lodash';
 
@@ -97,6 +98,11 @@ export default class Home extends Component {
                             placeholder="Write details of your project here"
                             onChange = {(e) => this.handleSummaryChange(e.target.value)}
                         />
+
+                        <Todos 
+                            thisProject = {this.state.thisProject}
+                        />
+
                     </ProjectPane>
                 }
             </div>
