@@ -30,7 +30,7 @@ export default class Home extends Component {
       
         ref.on('child_added', snapshot => {
           let project = snapshot.val();
-        //   userProjects.unshift(project)
+
           this.setState({
               thisProject : project,
               projectSummary : project.summary,
@@ -46,39 +46,29 @@ export default class Home extends Component {
     setProjectTasks(project) {
 
         let { thisProjectTasks } = this.state;
+
         let tasks = project.tasks;
         let taskList = [];
         for (let task in tasks) {
-            console.log( tasks[task] )
-            taskList.push(tasks[task]);
+            taskList.unshift(tasks[task]);
         }
         this.setState({ thisProjectTasks });
+        
+        console.log('resetting this stuff');
         return taskList;
     }
 
-    handleAddTaskToProject(tasks) {
+    handleAddTaskToProject(task) {
+        
         let projectId = this.state.thisProject.id;
-
-        let { thisProjectTasks } = this.state;
-
         let ref = firebase.database().ref("projects").orderByChild("id").equalTo(projectId);
-      
-        ref.on('child_added', snapshot => {
-            let project = snapshot.val();
-            let tasks = project.tasks;
-
-            for (let task in tasks) {
-                console.log( tasks[task] )
-                thisProjectTasks.push(tasks[task]);
-            }
- 
-        //   userProjects.unshift(project)
-          this.setState({
-            //   thisProject : project,
-              thisProjectTasks 
-          });
-    
+        // let that = this;
+        ref.once("child_added", function(snapshot) {
+            snapshot.ref.child('tasks').push(task);
+            console.log('success');
         });
+
+        this.handleSetCurrentProject(this.state.thisProject.id);
 
     }
 

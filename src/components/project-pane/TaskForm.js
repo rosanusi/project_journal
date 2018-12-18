@@ -8,6 +8,8 @@ class TaskForm extends Component {
         let taskInput = this.refs.taskInput.value;
         this.props.handleAddNewTask(taskInput);
 
+        this.refs.taskInput.value = '';
+
     }
 
     render() {
