@@ -13,7 +13,8 @@ export default class Home extends Component {
 
         this.state = {
             thisProject : null,
-            projectSummary: ''
+            projectSummary: '',
+            thisProjectTasks : [] 
         }
 
     }
@@ -32,10 +33,50 @@ export default class Home extends Component {
         //   userProjects.unshift(project)
           this.setState({
               thisProject : project,
-              projectSummary : project.summary
+              projectSummary : project.summary,
+              thisProjectTasks : this.setProjectTasks(project)
           });
     
           console.log(this.state.thisProject);
+    
+        });
+
+    }
+
+    setProjectTasks(project) {
+
+        let { thisProjectTasks } = this.state;
+        let tasks = project.tasks;
+        let taskList = [];
+        for (let task in tasks) {
+            console.log( tasks[task] )
+            taskList.push(tasks[task]);
+        }
+        this.setState({ thisProjectTasks });
+        return taskList;
+    }
+
+    handleAddTaskToProject(tasks) {
+        let projectId = this.state.thisProject.id;
+
+        let { thisProjectTasks } = this.state;
+
+        let ref = firebase.database().ref("projects").orderByChild("id").equalTo(projectId);
+      
+        ref.on('child_added', snapshot => {
+            let project = snapshot.val();
+            let tasks = project.tasks;
+
+            for (let task in tasks) {
+                console.log( tasks[task] )
+                thisProjectTasks.push(tasks[task]);
+            }
+ 
+        //   userProjects.unshift(project)
+          this.setState({
+            //   thisProject : project,
+              thisProjectTasks 
+          });
     
         });
 
@@ -85,7 +126,7 @@ export default class Home extends Component {
             <div className="main-page">
                 { project && 
                     <ProjectPane 
-                        currentProject = {this.state.currentProject}
+                        // currentProject = {this.state.currentProject}
                     >
     
                         <h2 className="project-title">{project.title}</h2>
@@ -100,7 +141,9 @@ export default class Home extends Component {
                         />
 
                         <Todos 
-                            thisProject = {this.state.thisProject}
+                            // thisProject = {this.state.thisProject}
+                            thisProjectTasks = {this.state.thisProjectTasks}
+                            handleAddTaskToProject = {this.handleAddTaskToProject.bind(this)}
                         />
 
                     </ProjectPane>
