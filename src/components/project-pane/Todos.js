@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TaskForm from './../project-pane/TaskForm';
 import uiud from 'uuidv4';
+import TaskIcon from './../../img/task-icon.svg';
 
 export default class Todos extends Component {
 
@@ -18,7 +19,6 @@ export default class Todos extends Component {
     }
 
     handleAddNewTask(taskInput) {
-        console.log(taskInput);
 
         let task = { 
             id : uiud(),
@@ -39,21 +39,30 @@ export default class Todos extends Component {
 
         let DisplayProjectTasks = thisProjectTasks.map((task) => {
             return (
-                <div key={task.id}>{task.title}</div>
+                <div key={task.id} className="todo-block">
+                    <span className="todo-title">
+                        {task.title}    
+                    </span>
+                </div>
             )
         })
 
         return (
         <div className="project-todos">
-            <h3 className="title">Current tasks in progress</h3>
-            <button type="button" onClick={this.addTaskForm}>Add a task</button>
+            <div className="title-block">
+                <img src={TaskIcon} alt="" className="title-icon" />            
+                <h3 className="title-copy">
+                    Tasks 
+                </h3>
+            </div>
+            {/* <button type="button" onClick={this.addTaskForm}>Add a task</button> */}
             {
                 showTaskForm && 
                 <TaskForm 
                     handleAddNewTask = {this.handleAddNewTask.bind(this)}
                 />
             }
-            <div>
+            <div className="todo-container">
                 {DisplayProjectTasks}
             </div>
         </div>

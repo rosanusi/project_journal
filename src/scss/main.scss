@@ -27,6 +27,14 @@ button {
     color: #cdcdcd;
 }
 
+a, .linklike-btn {
+    color : #8760FE;
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid #C2B1FF;
+}
+
+
 .main-wrap {
     position: relative;
     height: 100%;
@@ -34,51 +42,60 @@ button {
     flex-flow: column;
 }
 
+.header-container {
+    padding: 2em;
+    display: flex;
+    flex-flow: row wrap;
+
+    .logo {
+        display: block;
+    }
+}
+
 .grid-container {
-    width: 100vw;
-    height: 100%;
+    width: 80em;
+    // height: 100%;
     display: flex;
     flex-flow: row nowrap;
+    margin: 0 auto;
     // align-items: flex-start;
 
     .left-bar {
         width: 300px;
-        border-right: 1px solid #f0F0F0;
         padding: 32px;
     }
 
     .main-page {
         display: flex;
         flex-flow : row;
-        margin: 0 auto;
-        width: 768px;
+        margin-left: 10em;
+        width: 600px;
         padding: 32px;
-        padding-top: 100px;
     }
 }
 
 
 .currentUser {
-    border: 1px solid #eee;
     position: relative;
-    padding: 12px;
-    border-radius: 8px;    
+    border-radius: 8px;  
+    margin-left: auto;
+    width: auto;  
 
     .name {
-        color: #555;
+        color: #575757;
         font-size: 14px;
         line-height: 1;
     }
 
     .logout-btn {
-        color: #111;
-        position: absolute;
+        // color: #111;
+        // position: absolute;
         right: 12px;
         margin-left: 8px;
-        border: none;
+        // border: none;
         padding: 0;
         font-size: 14px;
-        border-bottom: 1px solid #757575;
+        // border-bottom: 1px solid #757575;
     }
 }
 
@@ -88,16 +105,31 @@ button {
     border: none;
 }
 
-.projects-menu {
-    margin-top: 32px;
+.title-block {
 
-    .title {
+    .title-icon {
+        vertical-align: middle;
+        display: inline-block;
+        margin-right: 16px;
+    }
+
+    .title-copy {
+        vertical-align: middle;
+        display: inline-block;
         position: relative;
         font-size:  12px;
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 1px;
-        color: #949494;
+        color: #777777;
+    }
+}
+
+
+.projects-menu {
+    // margin-top: 32px;
+
+    .title {
         vertical-align: middle;
 
     }
@@ -125,8 +157,13 @@ button {
         }
     }
 
+    .projects-list {
+        margin-left: 32px;
+        margin-top: 16px;
+    }
+
     .project-link {
-        margin-top: 12px;
+        margin-bottom: 12px;
 
         .project-icon {
             margin-right: 8px;
@@ -145,7 +182,7 @@ button {
                 border: none;
     
                 font-size: 16px;
-                color: #595959;
+                color: #242424;
             }
     
         }
@@ -157,8 +194,8 @@ button {
     width: 100%;
 
     .project-title {
-        color: #575757;
-        font-size: 24px;
+        color: #242424;
+        font-size: 19px;
         font-weight: 600;
         margin-bottom: 16px;
     }
@@ -168,18 +205,52 @@ button {
         width: 100%;
         font-size: 16px;
         border: none;
+        color: #484848;
+        line-height: 1.5;
         // padding: 24px;
     }
 
     .project-todos {
+        margin-top: 32px;
 
-        .title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #575757;
-            margin-bottom: 16px;
+        .title-block {
+            margin-left: -34px;
+        }
+
+        .todo-container {
+            // margin-top: 16px;
+            // margin-left: 32px;
+
+            .todo-block {
+                padding: 12px 0;
+                border-bottom: 1px solid #F0EFF0;
+
+                .todo-title {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #484848;
+                }
+            }
         }
 
     }
 
+
+    .project-notes {
+        margin-top: 32px;
+
+        .title-block {
+            margin-left: -34px;
+            margin-bottom : 12px;
+        }
+
+        .note-block {
+            border: 1px solid #F0EFF0;
+            padding: 16px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+        }
+    }
+
+ 
 }

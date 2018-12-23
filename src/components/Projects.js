@@ -36,7 +36,6 @@ export default class Projects extends Component {
         let DisplayProjects = userProjects.map((project) => { 
             return (
                 <div key={project.id} className="project-link">
-                    <img src={ProjectIcon} alt="" className="project-icon" />
                     <div className="project-link-brief">
                         <button type="button" className="project-title" onClick={(e) => this.setCurrentProject(e, project.id)}>{project.title}</button>
                     </div>
@@ -44,18 +43,21 @@ export default class Projects extends Component {
             )
         });
 
-        // console.log(userProjects);
 
         return (
             <div className="projects-menu">
-                <h3 className="title">Projects 
-                    <button 
-                        className="icon-btn addProject-btn"
-                        type="button" 
-                        onClick={this.formClicked}>
-                            <img src={AddIcon} alt="" />
-                    </button>
-                </h3>
+                <div className="title-block">
+                    <img src={ProjectIcon} alt="" className="title-icon" />            
+                    <h3 className="title-copy">
+                        Projects 
+                        {/* <button 
+                            className="icon-btn addProject-btn"
+                            type="button" 
+                            onClick={this.formClicked}>
+                                <img src={AddIcon} alt="" />
+                        </button> */}
+                    </h3>
+                </div>
 
                 { formClicked && 
                     <NewProjectForm 

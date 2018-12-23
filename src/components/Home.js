@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import firebase from './../firebase.js';
+import Header from './Header';
 import Projects from './Projects';
 import ProjectPane from './project-pane/ProjectPane';
 import Todos from './project-pane/Todos';
+import Notes from './project-pane/Notes';
 import Textarea from 'react-textarea-autosize';
 import { debounce } from 'lodash';
 
@@ -14,7 +16,8 @@ export default class Home extends Component {
         this.state = {
             thisProject : null,
             projectSummary: '',
-            thisProjectTasks : [] 
+            thisProjectTasks : [],
+            thisProjectNotes : []
         }
 
     }
@@ -34,10 +37,11 @@ export default class Home extends Component {
           this.setState({
               thisProject : project,
               projectSummary : project.summary,
-              thisProjectTasks : this.setProjectTasks(project)
+              thisProjectTasks : this.setProjectTasks(project),
+              thisProjectNotes : this.setProjectNotes(project)
+
           });
     
-          console.log(this.state.thisProject);
     
         });
 
@@ -53,22 +57,48 @@ export default class Home extends Component {
             taskList.unshift(tasks[task]);
         }
         this.setState({ thisProjectTasks });
-        
-        console.log('resetting this stuff');
         return taskList;
     }
+
+
+    setProjectNotes(project) {
+
+        let { thisProjectNotes } = this.state;
+
+        let notes = project.notes;
+        let notesList = [];
+        for (let note in notes) {
+            notesList.unshift(notes[note]);
+        }
+        this.setState({ thisProjectNotes });        
+        return notesList;
+    }
+
+
 
     handleAddTaskToProject(task) {
         
         let projectId = this.state.thisProject.id;
         let ref = firebase.database().ref("projects").orderByChild("id").equalTo(projectId);
-        // let that = this;
+
         ref.once("child_added", function(snapshot) {
             snapshot.ref.child('tasks').push(task);
-            console.log('success');
         });
 
-        this.handleSetCurrentProject(this.state.thisProject.id);
+        this.handleSetCurrentProject(projectId);
+
+    }
+
+    handleAddNoteToProject(note) {
+        let projectId = this.state.thisProject.id;
+
+        let ref = firebase.database().ref("projects").orderByChild("id").equalTo(projectId);
+
+        ref.once("child_added", function(snapshot) {
+            snapshot.ref.child('notes').push(note);
+        });
+
+        this.handleSetCurrentProject(projectId);
 
     }
 
@@ -89,7 +119,6 @@ export default class Home extends Component {
             this.setState({ projectSummary });
         });
         
-        console.log(this.state.projectSummary);
 
     }, 1000);
 
@@ -98,48 +127,55 @@ export default class Home extends Component {
     render() {
         
         let project = this.state.thisProject;
+        
 
         return (
-        <div className="grid-container">
-            <div className="left-bar">
-                <div className="currentUser">
-                    <span className="name">{this.props.user.email}</span>
-                    <button type="button" className="logout-btn" onClick={this.logout}>Log out</button>            
+        <div>
+            <Header 
+                user  = {this.props.user}
+            />
+            <div className="grid-container">
+                <div className="left-bar">
+                    <Projects 
+                        user  = {this.props.user}
+                        userProjects = {this.props.userProjects}
+                        handleSetCurrentProject = {this.handleSetCurrentProject.bind(this)}
+                    />
                 </div>
-                <Projects 
-                    user  = {this.props.user}
-                    userProjects = {this.props.userProjects}
-                    handleSetCurrentProject = {this.handleSetCurrentProject.bind(this)}
-                />
-            </div>
-            
-            <div className="main-page">
-                { project && 
-                    <ProjectPane 
-                        // currentProject = {this.state.currentProject}
-                    >
-    
-                        <h2 className="project-title">{project.title}</h2>
-                        {/* <p>{project.summary}</p> */}
-                        <Textarea 
-                            inputRef={ref => (this.detailsRef = ref)} 
-                            minRows={3} 
-                            className="project-summary"
-                            value={this.state.projectSummary}
-                            placeholder="Write details of your project here"
-                            onChange = {(e) => this.handleSummaryChange(e.target.value)}
-                        />
+                
+                <div className="main-page">
+                    { project && 
+                        <ProjectPane 
+                            // currentProject = {this.state.currentProject}
+                        >
+                            <h2 className="project-title">{project.title}</h2>
+                            {/* <p>{project.summary}</p> */}
+                            <Textarea 
+                                inputRef={ref => (this.detailsRef = ref)} 
+                                minRows={3} 
+                                className="project-summary"
+                                value={this.state.projectSummary}
+                                placeholder="Write details of your project here"
+                                onChange = {(e) => this.handleSummaryChange(e.target.value)}
+                            />
 
-                        <Todos 
-                            // thisProject = {this.state.thisProject}
-                            thisProjectTasks = {this.state.thisProjectTasks}
-                            handleAddTaskToProject = {this.handleAddTaskToProject.bind(this)}
-                        />
+                            <Todos 
+                                // thisProject = {this.state.thisProject}
+                                thisProjectTasks = {this.state.thisProjectTasks}
+                                handleAddTaskToProject = {this.handleAddTaskToProject.bind(this)}
+                            />
+                            <Notes 
+                                thisProjectNotes = {this.state.thisProjectNotes}
+                                handleAddNoteToProject = {this.handleAddNoteToProject.bind(this)}
+                            />
+                        </ProjectPane>
+                    }
+                </div>
+                <div className="right-bar">
 
-                    </ProjectPane>
-                }
+                </div>
             </div>
-        </div>
+        </div>            
         )
     }
 }

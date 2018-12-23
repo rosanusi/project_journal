@@ -58,8 +58,6 @@ class App extends Component {
           userProjects
       });
 
-      // console.log(this.state.userProjects);
-
     });
 
     this.setState({ loading : false });
