@@ -198,8 +198,29 @@ a, .linklike-btn {
     .project-pane .project-todos .title-block {
       margin-left: -34px; }
     .project-pane .project-todos .todo-container .todo-block {
-      padding: 12px 0;
-      border-bottom: 1px solid #F0EFF0; }
+      padding: 8px 0; }
+      .project-pane .project-todos .todo-container .todo-block .todo-checkbox {
+        display: none; }
+      .project-pane .project-todos .todo-container .todo-block .todo-checkbox + label:before {
+        content: '';
+        display: inline-block;
+        margin-right: 12px;
+        background: url(../img/checkbox.svg) no-repeat;
+        width: 15px;
+        height: 15px;
+        vertical-align: -2px; }
+      .project-pane .project-todos .todo-container .todo-block .todo-checkbox:checked + label:before {
+        content: '';
+        display: inline-block;
+        margin-right: 12px;
+        background: url(../img/checkbox-checked.svg) no-repeat;
+        width: 15px;
+        height: 15px;
+        vertical-align: -2px; }
+      .project-pane .project-todos .todo-container .todo-block label {
+        cursor: pointer; }
+      .project-pane .project-todos .todo-container .todo-block .todo-checkbox:checked + label {
+        text-decoration: line-through; }
       .project-pane .project-todos .todo-container .todo-block .todo-title {
         font-size: 14px;
         font-weight: 500;

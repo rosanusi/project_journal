@@ -31,6 +31,10 @@ export default class Todos extends Component {
         this.setState({ showTaskForm : false  });
     }
 
+    removeTask = (taskId) => {
+        this.props.handleRemoveTask(taskId);
+    }   
+    
     
     render() {
 
@@ -40,9 +44,11 @@ export default class Todos extends Component {
         let DisplayProjectTasks = thisProjectTasks.map((task) => {
             return (
                 <div key={task.id} className="todo-block">
-                    <span className="todo-title">
-                        {task.title}    
-                    </span>
+                    <input type="checkbox" id={task.id} className="todo-checkbox" />
+                    <label htmlFor={task.id} className="todo-title">
+                        {task.title}
+                    </label>
+                    <button type="button" className="remove-btn" onClick={() => this.removeTask(task.id)}>remove</button>
                 </div>
             )
         })
@@ -52,7 +58,7 @@ export default class Todos extends Component {
             <div className="title-block">
                 <img src={TaskIcon} alt="" className="title-icon" />            
                 <h3 className="title-copy">
-                    Tasks 
+                    To-Do
                 </h3>
             </div>
             {/* <button type="button" onClick={this.addTaskForm}>Add a task</button> */}

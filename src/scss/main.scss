@@ -222,8 +222,44 @@ a, .linklike-btn {
             // margin-left: 32px;
 
             .todo-block {
-                padding: 12px 0;
-                border-bottom: 1px solid #F0EFF0;
+                padding: 8px 0;
+                // border-bottom: 1px solid #F0EFF0;
+
+                .todo-checkbox {
+                    display: none;
+                    // margin-right: 12px;
+                }
+
+                .todo-checkbox + label:before {
+                    content : '';
+                    display : inline-block;
+                    margin-right: 12px;
+                    background: url(../img/checkbox.svg) no-repeat;
+                    width: 15px;
+                    height: 15px;
+                    vertical-align: -2px;
+                }
+
+                .todo-checkbox:checked + label:before {
+                    content : '';
+                    display : inline-block;
+                    margin-right: 12px;
+                    background: url(../img/checkbox-checked.svg) no-repeat;
+                    width: 15px;
+                    height: 15px;
+                    vertical-align: -2px;
+                }
+
+                label {
+                    // margin-left: 24px;
+                    // vertical-align: middle;
+                    cursor : pointer;
+                }
+
+                .todo-checkbox:checked + label {
+                    text-decoration: line-through;
+                }
+                
 
                 .todo-title {
                     font-size: 14px;

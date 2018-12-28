@@ -47,6 +47,19 @@ export default class Home extends Component {
 
     }
 
+    getThisProjectKey() {
+
+        let projectId = this.state.thisProject.id;
+
+        let ref = firebase.database().ref("projects").orderByChild("id").equalTo(projectId);
+        let projectKey;
+        ref.once('child_added', function(snapshot) {
+            projectKey = snapshot.key;
+        });
+
+        return projectKey;
+    }
+
     setProjectTasks(project) {
 
         let { thisProjectTasks } = this.state;
@@ -102,6 +115,47 @@ export default class Home extends Component {
 
     }
 
+    async handleRemoveTask(taskId){
+
+        let projectId = this.state.thisProject.id;
+        let key = await this.getThisProjectKey();
+        let that = this;
+        await console.log(key);
+
+        let tasksRef = firebase.database().ref("projects/" + key + "/tasks").orderByChild("id").equalTo(taskId);
+
+        await tasksRef.once('child_added').then(function(snapshot) {
+            console.log(snapshot.val());
+            snapshot.ref.remove();
+            that.handleSetCurrentProject(projectId);
+
+        }, function(error) {
+            // The Promise was rejected.
+            console.log(error);
+        });        
+    }
+
+
+    async handleRemoveNote(noteId){
+
+        let projectId = this.state.thisProject.id;
+        let key = await this.getThisProjectKey();
+        let that = this;
+        await console.log(key);
+
+        let notesRef = firebase.database().ref("projects/" + key + "/notes").orderByChild("id").equalTo(noteId);
+
+        await notesRef.once('child_added').then(function(snapshot) {
+            console.log(snapshot.val());
+            snapshot.ref.remove();
+            that.handleSetCurrentProject(projectId);
+
+        }, function(error) {
+            // The Promise was rejected.
+            console.log(error);
+        });        
+    }
+    
 
 
     handleSummaryChange = (value) => { 
@@ -121,6 +175,8 @@ export default class Home extends Component {
         
 
     }, 1000);
+
+
 
 
 
@@ -163,10 +219,12 @@ export default class Home extends Component {
                                 // thisProject = {this.state.thisProject}
                                 thisProjectTasks = {this.state.thisProjectTasks}
                                 handleAddTaskToProject = {this.handleAddTaskToProject.bind(this)}
+                                handleRemoveTask = {this.handleRemoveTask.bind(this)}
                             />
                             <Notes 
                                 thisProjectNotes = {this.state.thisProjectNotes}
                                 handleAddNoteToProject = {this.handleAddNoteToProject.bind(this)}
+                                handleRemoveNote = {this.handleRemoveNote.bind(this)}
                             />
                         </ProjectPane>
                     }

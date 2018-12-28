@@ -15,7 +15,10 @@ export default class Notes extends Component {
     }
 
     this.props.handleAddNoteToProject(note);
+  }
 
+  removeNote = (noteId) => {
+    this.props.handleRemoveNote(noteId);
   }
 
   render() {  
@@ -27,10 +30,11 @@ export default class Notes extends Component {
           <div key={note.id} className="note-block">
               <span className="note-title">{note.title}</span>
               <span className="note-text">{note.note}</span>
+              <button type="button" onClick={() => this.removeNote(note.id)}>Remove Note</button>
           </div>
         )
     })
-
+// 
     return (
       <div className="project-notes">
         <div className="title-block">
@@ -39,9 +43,9 @@ export default class Notes extends Component {
               Notes 
           </h3>
         </div>
-        {/* <NoteForm 
+        <NoteForm 
           handleAddNewNote = {this.handleAddNewNote.bind(this)}
-        /> */}
+        />
         {DisplayProjectNotes}
       </div>
     )
