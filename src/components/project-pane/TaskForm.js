@@ -14,8 +14,8 @@ class TaskForm extends Component {
 
     render() {
         return (
-            <form onSubmit={(e) => this.addNewTask(e)}>
-                <input type="text" ref="taskInput" placeholder="Add new task here" />
+            <form className="taskForm" onSubmit={(e) => this.addNewTask(e)}>
+                <input type="text" ref="taskInput" placeholder="Add new task here" autoFocus />
             </form>
         );
     }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NoteForm from './NoteForm';
 import uiud from 'uuidv4';
 import NoteIcon from './../../img/note-icon.svg';
+import RemoveIcon from './../../img/remove-icon.svg';
 
 export default class Notes extends Component {
 
@@ -30,11 +31,13 @@ export default class Notes extends Component {
           <div key={note.id} className="note-block">
               <span className="note-title">{note.title}</span>
               <span className="note-text">{note.note}</span>
-              <button type="button" onClick={() => this.removeNote(note.id)}>Remove Note</button>
+              <button type="button" className="icon-btn" onClick={() => this.removeNote(note.id)}>
+                <img src={RemoveIcon} alt="" className="remove-icon" />                          
+              </button>
           </div>
         )
     })
-// 
+
     return (
       <div className="project-notes">
         <div className="title-block">
@@ -46,7 +49,9 @@ export default class Notes extends Component {
         <NoteForm 
           handleAddNewNote = {this.handleAddNewNote.bind(this)}
         />
-        {DisplayProjectNotes}
+        <div className="noteBlock-container">
+          {DisplayProjectNotes}
+        </div>
       </div>
     )
   }

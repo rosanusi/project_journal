@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import TaskForm from './../project-pane/TaskForm';
 import uiud from 'uuidv4';
+import AddIcon from './../../img/add-icon.svg';
 import TaskIcon from './../../img/task-icon.svg';
+import RemoveIcon from './../../img/remove-icon.svg';
 
 export default class Todos extends Component {
 
@@ -48,7 +50,13 @@ export default class Todos extends Component {
                     <label htmlFor={task.id} className="todo-title">
                         {task.title}
                     </label>
-                    <button type="button" className="remove-btn" onClick={() => this.removeTask(task.id)}>remove</button>
+                    <button 
+                        type="button" 
+                        className="icon-btn remove-btn" 
+                        onClick={() => this.removeTask(task.id)}
+                    >
+                        <img className="remove-icon" src={RemoveIcon} alt="" />
+                    </button>
                 </div>
             )
         })
@@ -58,19 +66,28 @@ export default class Todos extends Component {
             <div className="title-block">
                 <img src={TaskIcon} alt="" className="title-icon" />            
                 <h3 className="title-copy">
-                    To-Do
+                    Tasks
                 </h3>
             </div>
-            {/* <button type="button" onClick={this.addTaskForm}>Add a task</button> */}
-            {
-                showTaskForm && 
-                <TaskForm 
-                    handleAddNewTask = {this.handleAddNewTask.bind(this)}
-                />
-            }
+
             <div className="todo-container">
+                
+                {
+                    showTaskForm && 
+                    <TaskForm 
+                        handleAddNewTask = {this.handleAddNewTask.bind(this)}
+                    />
+                }
+
                 {DisplayProjectTasks}
+
+                <button className="icon-btn" type="button" onClick={this.addTaskForm}>
+                    <img className="icon" src={AddIcon} alt="" />
+                    New Project
+                </button>
+
             </div>
+
         </div>
         )
     }

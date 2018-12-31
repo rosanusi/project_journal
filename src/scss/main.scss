@@ -53,23 +53,25 @@ a, .linklike-btn {
 }
 
 .grid-container {
-    width: 80em;
+    width: 100vw;
     // height: 100%;
     display: flex;
     flex-flow: row nowrap;
-    margin: 0 auto;
+    // margin: 0 auto;
     // align-items: flex-start;
 
     .left-bar {
         width: 300px;
+        height: 100vh;
         padding: 32px;
+        background-color: #FFF9F7;
     }
 
     .main-page {
         display: flex;
         flex-flow : row;
-        margin-left: 10em;
-        width: 600px;
+        width: 700px;
+        margin: 0 auto;
         padding: 32px;
     }
 }
@@ -101,55 +103,88 @@ a, .linklike-btn {
 
 .icon-btn {
     margin: 0;
+    margin-top: 12px;
     padding: 0;
     border: none;
+    background: none;
+    font-size: 14px;
+    background: none;
+    color : #372CD3;
+
+    .icon {
+        margin-right: 8px;
+    }
+
+}
+
+.link-btn {
+    background: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    border: none;
+
+    font-size: 16px;
+    color: #242424;
 }
 
 .title-block {
+    margin-bottom: 12px;
 
     .title-icon {
         vertical-align: middle;
         display: inline-block;
-        margin-right: 16px;
+        margin-right: 12px;
     }
 
     .title-copy {
         vertical-align: middle;
         display: inline-block;
         position: relative;
-        font-size:  12px;
-        font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 1px;
-        color: #777777;
+        font-size:  12px;
+        font-weight: 500;
+        color: #242424;
     }
 }
 
 
 .projects-menu {
     // margin-top: 32px;
+    position: relative;
 
     .title {
         vertical-align: middle;
 
     }
 
-    .addProject-btn {
+    .addNewProject {
+        margin-top: 16px;
+        // padding-top: 12px;
         position: absolute;
-        right: 0;
-        top: -6px;
+        width: calc(100% + 6px);
+        right: -32px;
+        border-top: 1px solid #F9EDE9;
+
+        .addProject-btn {
+
+            // position: absolute;
+            // right: 0;
+            // top: -6px;
+        }
 
     }
 
     .newProject-form {
         margin-top: 12px;
+        margin-left: 24px;
         
         input {
             width: 100%;
             border: none;
-
-            font-size: 16px;
-            padding-bottom: 8px;
+            font-size: 14px;
+            background: none;
 
             &:focus {
                 outline: none;
@@ -158,12 +193,11 @@ a, .linklike-btn {
     }
 
     .projects-list {
-        margin-left: 32px;
-        margin-top: 16px;
+        margin-left: 26px;
     }
 
     .project-link {
-        margin-bottom: 12px;
+        margin-top: 12px;
 
         .project-icon {
             margin-right: 8px;
@@ -173,18 +207,12 @@ a, .linklike-btn {
 
         .project-link-brief {
             display: inline-block;
-            vertical-align: top;
+            vertical-align: top;    
+        }
 
-            .project-title {
-                padding: 0;
-                margin: 0;
-                text-align: left;
-                border: none;
-    
-                font-size: 16px;
-                color: #242424;
-            }
-    
+        .project-link-btn {
+            font-size: 14px;
+            color: #484848;
         }
     }
 }
@@ -195,9 +223,9 @@ a, .linklike-btn {
 
     .project-title {
         color: #242424;
-        font-size: 19px;
+        font-size: 18px;
         font-weight: 600;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
     }
 
     .project-summary {
@@ -207,27 +235,45 @@ a, .linklike-btn {
         border: none;
         color: #484848;
         line-height: 1.5;
-        // padding: 24px;
+        padding: 0;
     }
 
     .project-todos {
         margin-top: 32px;
 
         .title-block {
-            margin-left: -34px;
         }
 
         .todo-container {
-            // margin-top: 16px;
-            // margin-left: 32px;
+            margin-left : 32px;
+            position: relative;
 
             .todo-block {
-                padding: 8px 0;
-                // border-bottom: 1px solid #F0EFF0;
+                position: relative;
+                padding: 8px;
+                margin-left: -8px;
+
+                
+                .remove-btn {
+                    position: absolute;
+                    right: 12px;
+                    top: -5px;
+                    opacity: 0;
+                }
+
+
+                &:hover {
+                    background-color: #FFF9F7;
+                    border-radius: 8px;
+
+                    .remove-btn {
+                        opacity: 1;
+                    }
+                }
+
 
                 .todo-checkbox {
                     display: none;
-                    // margin-right: 12px;
                 }
 
                 .todo-checkbox + label:before {
@@ -254,17 +300,19 @@ a, .linklike-btn {
                     // margin-left: 24px;
                     // vertical-align: middle;
                     cursor : pointer;
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: #484848;
                 }
 
                 .todo-checkbox:checked + label {
                     text-decoration: line-through;
+                    color: #BABABA;
                 }
                 
 
                 .todo-title {
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: #484848;
+
                 }
             }
         }
@@ -272,19 +320,75 @@ a, .linklike-btn {
     }
 
 
+    .taskForm {
+
+        input {
+            margin: 0;
+            margin-top: 8px;
+            margin-left: 27px;
+            line-height: 1;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 0;
+            border: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+
     .project-notes {
-        margin-top: 32px;
+        margin-top: 48px;
+
 
         .title-block {
-            margin-left: -34px;
             margin-bottom : 12px;
         }
+
+        .noteBlock-container {
+            margin-left : 32px;
+        }
+
 
         .note-block {
             border: 1px solid #F0EFF0;
             padding: 16px;
             margin-bottom: 8px;
             border-radius: 8px;
+            position: relative;
+
+            .note-title {
+                font-size: 14px;
+                font-weight: 500;
+                display: block;
+                margin-bottom: 8px;
+                color: #484848;
+            }
+
+            .note-text {
+                display: block;
+                font-size: 14px;
+                color: #989898;
+            }
+
+            .icon-btn {
+                position: absolute;
+                top: 12px;
+                right : 12px;
+                margin-top: 0;
+                line-height: 1;
+                opacity: 0;
+
+            }
+
+            &:hover {
+
+                .icon-btn {
+                    opacity: 1;
+                }
+            }
         }
     }
 

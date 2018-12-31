@@ -5,8 +5,8 @@
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Desktop-HD" transform="translate(-79.000000, -139.000000)" stroke="#FFD084">
-            <g id="book" transform="translate(80.000000, 140.000000)">
+        <g id="Desktop-HD" transform="translate(-31.000000, -139.000000)" stroke="#FF413A">
+            <g id="book" transform="translate(32.000000, 140.000000)">
                 <path d="M0,15.3125 C0,14.1043771 0.97937711,13.125 2.1875,13.125 L14,13.125" id="Shape"></path>
                 <path d="M2.1875,0 L14,0 L14,17.5 L2.1875,17.5 C0.97937711,17.5 0,16.5206229 0,15.3125 L0,2.1875 C0,0.97937711 0.97937711,3.88578059e-16 2.1875,0 Z" id="Shape"></path>
             </g>

@@ -53,7 +53,7 @@ class App extends Component {
   
     ref.on('child_added', snapshot => {
       let project = snapshot.val();
-      userProjects.unshift(project)
+      userProjects.push(project)
       this.setState({
           userProjects
       });

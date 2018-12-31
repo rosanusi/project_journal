@@ -37,7 +37,7 @@ export default class Projects extends Component {
             return (
                 <div key={project.id} className="project-link">
                     <div className="project-link-brief">
-                        <button type="button" className="project-title" onClick={(e) => this.setCurrentProject(e, project.id)}>{project.title}</button>
+                        <button type="button" className="link-btn project-link-btn" onClick={(e) => this.setCurrentProject(e, project.id)}>{project.title}</button>
                     </div>
                 </div>
             )
@@ -50,13 +50,11 @@ export default class Projects extends Component {
                     <img src={ProjectIcon} alt="" className="title-icon" />            
                     <h3 className="title-copy">
                         Projects 
-                        {/* <button 
-                            className="icon-btn addProject-btn"
-                            type="button" 
-                            onClick={this.formClicked}>
-                                <img src={AddIcon} alt="" />
-                        </button> */}
                     </h3>
+                </div>
+
+                <div className="projects-list">
+                    {DisplayProjects}
                 </div>
 
                 { formClicked && 
@@ -66,9 +64,16 @@ export default class Projects extends Component {
                     />
                 }
 
-                <div className="projects-list">
-                    {DisplayProjects}
+                <div className="addNewProject">
+                    <button 
+                        className="icon-btn addProject-btn"
+                        type="button" 
+                        onClick={this.formClicked}>
+                            <img className="icon" src={AddIcon} alt="" />
+                            New Project
+                    </button>
                 </div>
+
             </div>
         )
     }

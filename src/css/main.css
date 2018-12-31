@@ -95,18 +95,19 @@ a, .linklike-btn {
     display: block; }
 
 .grid-container {
-  width: 80em;
+  width: 100vw;
   display: flex;
-  flex-flow: row nowrap;
-  margin: 0 auto; }
+  flex-flow: row nowrap; }
   .grid-container .left-bar {
     width: 300px;
-    padding: 32px; }
+    height: 100vh;
+    padding: 32px;
+    background-color: #FFF9F7; }
   .grid-container .main-page {
     display: flex;
     flex-flow: row;
-    margin-left: 10em;
-    width: 600px;
+    width: 700px;
+    margin: 0 auto;
     padding: 32px; }
 
 .currentUser {
@@ -126,114 +127,178 @@ a, .linklike-btn {
 
 .icon-btn {
   margin: 0;
+  margin-top: 12px;
   padding: 0;
-  border: none; }
+  border: none;
+  background: none;
+  font-size: 14px;
+  background: none;
+  color: #372CD3; }
+  .icon-btn .icon {
+    margin-right: 8px; }
 
-.title-block .title-icon {
-  vertical-align: middle;
-  display: inline-block;
-  margin-right: 16px; }
-.title-block .title-copy {
-  vertical-align: middle;
-  display: inline-block;
-  position: relative;
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #777777; }
+.link-btn {
+  background: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  border: none;
+  font-size: 16px;
+  color: #242424; }
 
-.projects-menu .title {
-  vertical-align: middle; }
-.projects-menu .addProject-btn {
-  position: absolute;
-  right: 0;
-  top: -6px; }
-.projects-menu .newProject-form {
-  margin-top: 12px; }
-  .projects-menu .newProject-form input {
-    width: 100%;
-    border: none;
-    font-size: 16px;
-    padding-bottom: 8px; }
-    .projects-menu .newProject-form input:focus {
-      outline: none; }
-.projects-menu .projects-list {
-  margin-left: 32px;
-  margin-top: 16px; }
-.projects-menu .project-link {
+.title-block {
   margin-bottom: 12px; }
-  .projects-menu .project-link .project-icon {
-    margin-right: 8px;
+  .title-block .title-icon {
     vertical-align: middle;
-    display: inline-block; }
-  .projects-menu .project-link .project-link-brief {
     display: inline-block;
-    vertical-align: top; }
-    .projects-menu .project-link .project-link-brief .project-title {
-      padding: 0;
-      margin: 0;
-      text-align: left;
+    margin-right: 12px; }
+  .title-block .title-copy {
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #242424; }
+
+.projects-menu {
+  position: relative; }
+  .projects-menu .title {
+    vertical-align: middle; }
+  .projects-menu .addNewProject {
+    margin-top: 16px;
+    position: absolute;
+    width: calc(100% + 6px);
+    right: -32px;
+    border-top: 1px solid #F9EDE9; }
+  .projects-menu .newProject-form {
+    margin-top: 12px;
+    margin-left: 24px; }
+    .projects-menu .newProject-form input {
+      width: 100%;
       border: none;
-      font-size: 16px;
-      color: #242424; }
+      font-size: 14px;
+      background: none; }
+      .projects-menu .newProject-form input:focus {
+        outline: none; }
+  .projects-menu .projects-list {
+    margin-left: 26px; }
+  .projects-menu .project-link {
+    margin-top: 12px; }
+    .projects-menu .project-link .project-icon {
+      margin-right: 8px;
+      vertical-align: middle;
+      display: inline-block; }
+    .projects-menu .project-link .project-link-brief {
+      display: inline-block;
+      vertical-align: top; }
+    .projects-menu .project-link .project-link-btn {
+      font-size: 14px;
+      color: #484848; }
 
 .project-pane {
   position: relative;
   width: 100%; }
   .project-pane .project-title {
     color: #242424;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 600;
-    margin-bottom: 16px; }
+    margin-bottom: 12px; }
   .project-pane .project-summary {
     position: relative;
     width: 100%;
     font-size: 16px;
     border: none;
     color: #484848;
-    line-height: 1.5; }
+    line-height: 1.5;
+    padding: 0; }
   .project-pane .project-todos {
     margin-top: 32px; }
-    .project-pane .project-todos .title-block {
-      margin-left: -34px; }
-    .project-pane .project-todos .todo-container .todo-block {
-      padding: 8px 0; }
-      .project-pane .project-todos .todo-container .todo-block .todo-checkbox {
-        display: none; }
-      .project-pane .project-todos .todo-container .todo-block .todo-checkbox + label:before {
-        content: '';
-        display: inline-block;
-        margin-right: 12px;
-        background: url(../img/checkbox.svg) no-repeat;
-        width: 15px;
-        height: 15px;
-        vertical-align: -2px; }
-      .project-pane .project-todos .todo-container .todo-block .todo-checkbox:checked + label:before {
-        content: '';
-        display: inline-block;
-        margin-right: 12px;
-        background: url(../img/checkbox-checked.svg) no-repeat;
-        width: 15px;
-        height: 15px;
-        vertical-align: -2px; }
-      .project-pane .project-todos .todo-container .todo-block label {
-        cursor: pointer; }
-      .project-pane .project-todos .todo-container .todo-block .todo-checkbox:checked + label {
-        text-decoration: line-through; }
-      .project-pane .project-todos .todo-container .todo-block .todo-title {
-        font-size: 14px;
-        font-weight: 500;
-        color: #484848; }
+    .project-pane .project-todos .todo-container {
+      margin-left: 32px;
+      position: relative; }
+      .project-pane .project-todos .todo-container .todo-block {
+        position: relative;
+        padding: 8px;
+        margin-left: -8px; }
+        .project-pane .project-todos .todo-container .todo-block .remove-btn {
+          position: absolute;
+          right: 12px;
+          top: -5px;
+          opacity: 0; }
+        .project-pane .project-todos .todo-container .todo-block:hover {
+          background-color: #FFF9F7;
+          border-radius: 8px; }
+          .project-pane .project-todos .todo-container .todo-block:hover .remove-btn {
+            opacity: 1; }
+        .project-pane .project-todos .todo-container .todo-block .todo-checkbox {
+          display: none; }
+        .project-pane .project-todos .todo-container .todo-block .todo-checkbox + label:before {
+          content: '';
+          display: inline-block;
+          margin-right: 12px;
+          background: url(../img/checkbox.svg) no-repeat;
+          width: 15px;
+          height: 15px;
+          vertical-align: -2px; }
+        .project-pane .project-todos .todo-container .todo-block .todo-checkbox:checked + label:before {
+          content: '';
+          display: inline-block;
+          margin-right: 12px;
+          background: url(../img/checkbox-checked.svg) no-repeat;
+          width: 15px;
+          height: 15px;
+          vertical-align: -2px; }
+        .project-pane .project-todos .todo-container .todo-block label {
+          cursor: pointer;
+          font-weight: 400;
+          font-size: 14px;
+          color: #484848; }
+        .project-pane .project-todos .todo-container .todo-block .todo-checkbox:checked + label {
+          text-decoration: line-through;
+          color: #BABABA; }
+  .project-pane .taskForm input {
+    margin: 0;
+    margin-top: 8px;
+    margin-left: 27px;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    border: none; }
+    .project-pane .taskForm input:focus {
+      outline: none; }
   .project-pane .project-notes {
-    margin-top: 32px; }
+    margin-top: 48px; }
     .project-pane .project-notes .title-block {
-      margin-left: -34px;
       margin-bottom: 12px; }
+    .project-pane .project-notes .noteBlock-container {
+      margin-left: 32px; }
     .project-pane .project-notes .note-block {
       border: 1px solid #F0EFF0;
       padding: 16px;
       margin-bottom: 8px;
-      border-radius: 8px; }
+      border-radius: 8px;
+      position: relative; }
+      .project-pane .project-notes .note-block .note-title {
+        font-size: 14px;
+        font-weight: 500;
+        display: block;
+        margin-bottom: 8px;
+        color: #484848; }
+      .project-pane .project-notes .note-block .note-text {
+        display: block;
+        font-size: 14px;
+        color: #989898; }
+      .project-pane .project-notes .note-block .icon-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        margin-top: 0;
+        line-height: 1;
+        opacity: 0; }
+      .project-pane .project-notes .note-block:hover .icon-btn {
+        opacity: 1; }
 
 /*# sourceMappingURL=main.css.map */

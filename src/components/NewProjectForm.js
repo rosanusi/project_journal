@@ -9,19 +9,14 @@ export default class NewProjectForm extends Component {
 
         this.state = ({
             project : {},
-
         })
     }
 
     handleAddNewProject = (e) => {
         e.preventDefault();
-        console.log('Lets do what we can');
-
         let projectTitle = this.refs.projectRef.value;
-
         console.log(projectTitle);
         this.addProjectToState(projectTitle);
-
     }
 
     async addProjectToState(projectTitle) {
@@ -52,7 +47,6 @@ export default class NewProjectForm extends Component {
         let project = this.state.project;
         // let id = this.props.user.id;
         let key = await firebase.database().ref('projects').push().key;
-
         let ref = await firebase.database().ref('projects/'+key);
         
         ref.set(project);
@@ -71,7 +65,6 @@ export default class NewProjectForm extends Component {
                 onSubmit={this.handleAddNewProject}
                 className="newProject-form"
             >
-                
                 <input 
                     type="text" 
                     ref="projectRef" 

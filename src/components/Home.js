@@ -42,7 +42,6 @@ export default class Home extends Component {
 
           });
     
-    
         });
 
     }
@@ -187,9 +186,9 @@ export default class Home extends Component {
 
         return (
         <div>
-            <Header 
+            {/* <Header 
                 user  = {this.props.user}
-            />
+            /> */}
             <div className="grid-container">
                 <div className="left-bar">
                     <Projects 
@@ -208,7 +207,7 @@ export default class Home extends Component {
                             {/* <p>{project.summary}</p> */}
                             <Textarea 
                                 inputRef={ref => (this.detailsRef = ref)} 
-                                minRows={3} 
+                                minRows={2} 
                                 className="project-summary"
                                 value={this.state.projectSummary}
                                 placeholder="Write details of your project here"
