@@ -1,24 +1,100 @@
-import React, { Component } from 'react'
+import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
+import React, { Component } from 'react';
 
 export default class NoteForm extends Component {
 
-    addNewNote(e) {
+    constructor(){
+        super();
+
+        this.state = {
+            editorState: EditorState.createEmpty(),
+        };
+    }
+
+    componentDidMount() {
+        this.noteEditor && this.noteEditor.focus(); // or however you want
+    }
+
+    handleKeyCommand = (command) => {
+        const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+      
+        if (newState) {
+          this.onChange(newState);
+          return 'handled';
+        }
+      
+        return 'not-handled';
+    }
+
+    onUnderlineClick = () => {
+        this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+    }
+    
+    onToggleCode = () => {
+        this.onChange(RichUtils.toggleCode(this.state.editorState));
+    }
+
+      
+    onChange = (editorState) => {
+
+        let contentState = editorState.getCurrentContent();
+        // this.saveContent(contentState);
+        
+        this.setState({
+          editorState,
+        });
+
+        console.log(convertToRaw(contentState));
+        // console.log(convertToRaw(this.state.editorState));
+    }
+
+    onSave(e) {
+
         e.preventDefault();
-
         let titleValue = this.refs.titleRef.value;
-        let noteValue = this.refs.noteRef.value;
 
-        this.props.handleAddNewNote(titleValue, noteValue);
+        let editorState = this.state.editorState;
+        let contentState = editorState.getCurrentContent();
+        let rawStringContent = JSON.stringify(convertToRaw(contentState));
+        
+        console.log(titleValue);
+        console.log(rawStringContent);
+
+        this.props.handleSaveNote(titleValue, rawStringContent);
 
     }
+
+
 
     render() {
         return (
-            <form className="note-form" onSubmit={(e) => this.addNewNote(e)}>
-                <input type="text" ref="titleRef" placeholder="title" />
-                <textarea ref="noteRef" placeholder="write your note here"></textarea>
-                <button type="submit">Save Note</button>
-            </form>
+            <div className="note-form-container">
+                <form className="note-form" onSubmit={this.onSave.bind(this)}>
+                    {/* <button className="close-btn" type="button">Close</button> */}
+                    <input type="text" className="note-form-title" ref="titleRef" placeholder="Title of the note you are writing"/>
+                    {!this.state.editorState &&
+                        <h3 className="loading">Loading...</h3>
+                    }
+                    {this.state.editorState &&                        
+                        <Editor 
+                            editorState={this.state.editorState}
+                            handleKeyCommand={this.handleKeyCommand}
+                            onChange={this.onChange}
+                            ref={noteEditor => this.noteEditor = noteEditor}
+                            className="note-editor"
+                        />
+                    }
+                    {/* <span onClick={this.onUnderlineClick}>Underline</span>
+                    <span onClick={this.onToggleCode}>Code Block</span> */}
+                    <button 
+                        className="note-form-btn"
+                        type="submit" 
+                    >
+                        Save Note
+                    </button>
+                </form>
+            </div>
         )
     }
+    
 }

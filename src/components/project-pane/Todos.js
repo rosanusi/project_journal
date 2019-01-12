@@ -83,7 +83,7 @@ export default class Todos extends Component {
 
                 <button className="icon-btn" type="button" onClick={this.addTaskForm}>
                     <img className="icon" src={AddIcon} alt="" />
-                    New Project
+                    New Task
                 </button>
 
             </div>

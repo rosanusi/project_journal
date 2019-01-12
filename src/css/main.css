@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,500i");
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -147,7 +148,8 @@ a, .linklike-btn {
   color: #242424; }
 
 .title-block {
-  margin-bottom: 12px; }
+  margin-bottom: 12px;
+  margin-left: -32px; }
   .title-block .title-icon {
     vertical-align: middle;
     display: inline-block;
@@ -164,6 +166,8 @@ a, .linklike-btn {
 
 .projects-menu {
   position: relative; }
+  .projects-menu .title-block {
+    margin-left: 0; }
   .projects-menu .title {
     vertical-align: middle; }
   .projects-menu .addNewProject {
@@ -216,7 +220,6 @@ a, .linklike-btn {
   .project-pane .project-todos {
     margin-top: 32px; }
     .project-pane .project-todos .todo-container {
-      margin-left: 32px;
       position: relative; }
       .project-pane .project-todos .todo-container .todo-block {
         position: relative;
@@ -273,8 +276,6 @@ a, .linklike-btn {
     margin-top: 48px; }
     .project-pane .project-notes .title-block {
       margin-bottom: 12px; }
-    .project-pane .project-notes .noteBlock-container {
-      margin-left: 32px; }
     .project-pane .project-notes .note-block {
       border: 1px solid #F0EFF0;
       padding: 16px;
@@ -290,6 +291,7 @@ a, .linklike-btn {
       .project-pane .project-notes .note-block .note-text {
         display: block;
         font-size: 14px;
+        line-height: 1.5;
         color: #989898; }
       .project-pane .project-notes .note-block .icon-btn {
         position: absolute;
@@ -300,5 +302,48 @@ a, .linklike-btn {
         opacity: 0; }
       .project-pane .project-notes .note-block:hover .icon-btn {
         opacity: 1; }
+
+.note-form-container {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 700px;
+  height: 70vh;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid #F0EFF0; }
+  .note-form-container .note-form {
+    padding: 64px; }
+    .note-form-container .note-form .note-form-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-style: italic;
+      font-weight: 500;
+      display: block;
+      font-size: #888;
+      width: 100%;
+      font-size: 14px;
+      line-height: 1.5;
+      border: none;
+      margin-bottom: 16px; }
+    .note-form-container .note-form .DraftEditor-root {
+      font-family: 'IBM Plex Mono', monospace;
+      display: block;
+      width: 100%;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #444;
+      border: none; }
+    .note-form-container .note-form .note-form-btn {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      background-color: #372CD3;
+      font-size: 16px;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 12px 20px; }
 
 /*# sourceMappingURL=main.css.map */

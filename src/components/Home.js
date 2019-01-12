@@ -32,15 +32,14 @@ export default class Home extends Component {
         let ref = firebase.database().ref("projects").orderByChild("id").equalTo(projectId);
       
         ref.on('child_added', snapshot => {
-          let project = snapshot.val();
+            let project = snapshot.val();
 
-          this.setState({
+            this.setState({
               thisProject : project,
               projectSummary : project.summary,
               thisProjectTasks : this.setProjectTasks(project),
               thisProjectNotes : this.setProjectNotes(project)
-
-          });
+            });
     
         });
 
@@ -101,16 +100,18 @@ export default class Home extends Component {
 
     }
 
-    handleAddNoteToProject(note) {
+    handleAddNoteToProject(newNote) {
         let projectId = this.state.thisProject.id;
 
         let ref = firebase.database().ref("projects").orderByChild("id").equalTo(projectId);
 
         ref.once("child_added", function(snapshot) {
-            snapshot.ref.child('notes').push(note);
+            snapshot.ref.child('notes').push(newNote);
         });
 
         this.handleSetCurrentProject(projectId);
+
+        // console.log(this.state.thisProject);
 
     }
 
