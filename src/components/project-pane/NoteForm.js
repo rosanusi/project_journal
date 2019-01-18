@@ -1,5 +1,6 @@
 import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
 import React, { Component } from 'react';
+import closeIcon from './../../img/close-btn.svg';
 
 export default class NoteForm extends Component {
 
@@ -13,6 +14,11 @@ export default class NoteForm extends Component {
 
     componentDidMount() {
         this.noteEditor && this.noteEditor.focus(); // or however you want
+    }
+
+
+    closeNoteForm = () => {
+        this.props.handleCloseForm();
     }
 
     handleKeyCommand = (command) => {
@@ -69,6 +75,13 @@ export default class NoteForm extends Component {
     render() {
         return (
             <div className="note-form-container">
+                <button 
+                    className="close-btn"
+                    type="submit" 
+                    onClick={this.closeNoteForm}
+                >
+                    <img className="remove-icon" src={closeIcon} alt="" />
+                </button>
                 <form className="note-form" onSubmit={this.onSave.bind(this)}>
                     {/* <button className="close-btn" type="button">Close</button> */}
                     <input type="text" className="note-form-title" ref="titleRef" placeholder="Title of the note you are writing"/>

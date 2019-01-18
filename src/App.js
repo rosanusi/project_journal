@@ -47,6 +47,8 @@ class App extends Component {
 
   loadUserProjects(userId){
 
+    this.setState({ userProjects : []  });
+    
     let { userProjects } = this.state;
 
     let ref = firebase.database().ref("projects").orderByChild("ownerId").equalTo(userId);
@@ -57,6 +59,7 @@ class App extends Component {
       this.setState({
           userProjects
       });
+
 
     });
 
@@ -90,6 +93,7 @@ class App extends Component {
             user = {this.state.user}
             userProjects = {this.state.userProjects}
             handleLogOut = {this.handleLogOut}
+            loadUserProjects = {this.loadUserProjects.bind(this)}
           /> 
         }
 

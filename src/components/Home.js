@@ -43,6 +43,8 @@ export default class Home extends Component {
     
         });
 
+        console.log(this.state.thisProject);
+
     }
 
     getThisProjectKey() {
@@ -176,6 +178,54 @@ export default class Home extends Component {
 
     }, 1000);
 
+    async deleteProject() {
+
+        let projectId = this.state.thisProject.id;
+        let projectRef =  await firebase.database().ref("projects").orderByChild("id").equalTo(projectId);
+        // let key = await this.getThisProjectKey();
+        // let that = this;
+        // await console.log(key);
+
+        let nextProjectId = await this.getNextProjectId();
+
+        await projectRef.once('child_added').then(function(snapshot) {
+            console.log(snapshot.val());
+            snapshot.ref.remove();
+        }, function(error) {
+            // The Promise was rejected.
+            console.log(error);
+        });    
+
+        console.log(nextProjectId);
+        this.handleSetCurrentProject(nextProjectId);
+        this.props.loadUserProjects(this.props.user.id);
+        console.log('remove this project permanently');
+
+    }
+
+    async getNextProjectId() {
+        let projectId = this.state.thisProject.id;
+        let projectsRef = await firebase.database().ref("projects");
+
+        let projectsList;
+
+        await projectsRef.once('value').then(function(snapshot) {
+            let result = snapshot.val();
+            projectsList = Object.values(result);
+
+        }, function(error) {
+            console.log(error);
+        });   
+        
+        let index = projectsList.findIndex(project => project.id === projectId);
+        let nextIndex = index + 1;
+
+        let nextProjectId = projectsList[nextIndex].id;
+
+        console.log(nextProjectId);
+        return nextProjectId;
+    }
+
 
 
 
@@ -204,7 +254,10 @@ export default class Home extends Component {
                         <ProjectPane 
                             // currentProject = {this.state.currentProject}
                         >
-                            <h2 className="project-title">{project.title}</h2>
+                            <h2 className="project-title">
+                                {project.title} 
+                                <button type="button" className="project-delete-btn" onClick={this.deleteProject.bind(this)}>Delete Project</button>
+                            </h2>
                             {/* <p>{project.summary}</p> */}
                             <Textarea 
                                 inputRef={ref => (this.detailsRef = ref)} 

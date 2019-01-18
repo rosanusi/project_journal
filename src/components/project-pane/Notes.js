@@ -23,6 +23,9 @@ export default class Notes extends Component {
     this.setState({ showNoteForm : true });
   }
 
+  handleCloseForm() {
+    this.setState({ showNoteForm : false  });
+  }
 
   handleSaveNote(titleValue, rawContent){
 
@@ -58,8 +61,6 @@ export default class Notes extends Component {
     let { thisProjectNotes } = this.props;
     let { showNoteForm } = this.state;
 
-    console.log(thisProjectNotes);
-
     let DisplayProjectNotes = thisProjectNotes.map((note) => {
         return (
           <div key={note.id} className="note-block">
@@ -86,6 +87,7 @@ export default class Notes extends Component {
           showNoteForm && 
             <NoteForm 
               handleSaveNote = {this.handleSaveNote.bind(this)}
+              handleCloseForm = {this.handleCloseForm.bind(this)}
             />
         }
         <div className="noteBlock-container">

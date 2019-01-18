@@ -14,7 +14,14 @@ export default class NewProjectForm extends Component {
 
     handleAddNewProject = (e) => {
         e.preventDefault();
-        let projectTitle = this.refs.projectRef.value;
+        let projectTitle;
+
+        if(this.refs.projectRef.value === ''){
+            projectTitle = 'Untitled Project'
+        } else {
+            projectTitle = this.refs.projectRef.value;
+        }
+
         console.log(projectTitle);
         this.addProjectToState(projectTitle);
     }

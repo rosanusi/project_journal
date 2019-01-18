@@ -183,7 +183,9 @@ a, .linklike-btn {
       width: 100%;
       border: none;
       font-size: 14px;
-      background: none; }
+      background: none;
+      border-bottom: 1px solid #FEACAA;
+      padding-bottom: 4px; }
       .projects-menu .newProject-form input:focus {
         outline: none; }
   .projects-menu .projects-list {

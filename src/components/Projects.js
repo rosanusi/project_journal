@@ -37,7 +37,13 @@ export default class Projects extends Component {
             return (
                 <div key={project.id} className="project-link">
                     <div className="project-link-brief">
-                        <button type="button" className="link-btn project-link-btn" onClick={(e) => this.setCurrentProject(e, project.id)}>{project.title}</button>
+                        <button 
+                            type="button" 
+                            className="link-btn project-link-btn" 
+                            onClick={(e) => this.setCurrentProject(e, project.id)}
+                        >
+                            {project.title}
+                        </button>
                     </div>
                 </div>
             )
