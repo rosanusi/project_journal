@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
-    <title>Rectangle 4</title>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Group</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Desktop-HD" transform="translate(-463.000000, -421.000000)" fill="#FFFFFF" stroke="#E2E5EF">
-            <g id="Group" transform="translate(432.000000, 328.000000)">
-                <rect id="Rectangle-4" x="31.5" y="93.5" width="14" height="14" rx="2"></rect>
+        <g id="Desktop-HD" transform="translate(-401.000000, -431.000000)" fill="#FFFFFF" stroke="#F5F4F2" stroke-width="2">
+            <g id="Group" transform="translate(401.000000, 431.000000)">
+                <path d="M2.5638852,1 C1.90203328,1 1.70048072,1.03892159 1.49475316,1.1489459 C1.3430957,1.2300532 1.2300532,1.3430957 1.1489459,1.49475316 C1.03892159,1.70048072 1,1.90203328 1,2.5638852 L1,17.4361148 C1,18.0979667 1.03892159,18.2995193 1.1489459,18.5052468 C1.2300532,18.6569043 1.3430957,18.7699468 1.49475316,18.8510541 C1.70048072,18.9610784 1.90203328,19 2.5638852,19 L17.4361148,19 C18.0979667,19 18.2995193,18.9610784 18.5052468,18.8510541 C18.6569043,18.7699468 18.7699468,18.6569043 18.8510541,18.5052468 C18.9610784,18.2995193 19,18.0979667 19,17.4361148 L19,2.5638852 C19,1.90203328 18.9610784,1.70048072 18.8510541,1.49475316 C18.7699468,1.3430957 18.6569043,1.2300532 18.5052468,1.1489459 C18.2995193,1.03892159 18.0979667,1 17.4361148,1 L2.5638852,1 Z" id="Rectangle-4"></path>
             </g>
         </g>
     </g>

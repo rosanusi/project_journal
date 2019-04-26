@@ -186,8 +186,6 @@ export default class Home extends Component {
         // let that = this;
         // await console.log(key);
 
-        let nextProjectId = await this.getNextProjectId();
-
         await projectRef.once('child_added').then(function(snapshot) {
             console.log(snapshot.val());
             snapshot.ref.remove();
@@ -196,10 +194,16 @@ export default class Home extends Component {
             console.log(error);
         });    
 
+        let nextProjectId = await this.getNextProjectId();
+
         console.log(nextProjectId);
-        this.handleSetCurrentProject(nextProjectId);
-        this.props.loadUserProjects(this.props.user.id);
-        console.log('remove this project permanently');
+        if(nextProjectId === null){
+            this.props.loadUserProjects(this.props.user.id);
+        } else {
+            this.handleSetCurrentProject(nextProjectId);
+            this.props.loadUserProjects(this.props.user.id);
+            console.log('remove this project permanently');    
+        }
 
     }
 
@@ -208,22 +212,34 @@ export default class Home extends Component {
         let projectsRef = await firebase.database().ref("projects");
 
         let projectsList;
+        let result;
 
         await projectsRef.once('value').then(function(snapshot) {
-            let result = snapshot.val();
-            projectsList = Object.values(result);
-
+            result = snapshot.val();
         }, function(error) {
             console.log(error);
         });   
-        
-        let index = projectsList.findIndex(project => project.id === projectId);
-        let nextIndex = index + 1;
 
-        let nextProjectId = projectsList[nextIndex].id;
+        if(result === null){
+            projectsList = null;
+        }else {
+            projectsList = Object.values(result);
+        }
 
-        console.log(nextProjectId);
+    
+        let nextProjectId;
+         
+        if(projectsList === null ){
+            nextProjectId = null;
+        } else {
+            let index = projectsList.findIndex(project => project.id === projectId);
+            let nextIndex = index + 1;
+            nextProjectId = projectsList[nextIndex].id;
+        }
+
         return nextProjectId;
+
+
     }
 
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NewProjectForm from './NewProjectForm';
 import AddIcon from './../img/add-icon.svg';
-import ProjectIcon from './../img/project-icon.svg';
 
 export default class Projects extends Component {
 
@@ -23,14 +22,15 @@ export default class Projects extends Component {
         }
     }
 
-    setCurrentProject = (e, projectId) => {
+    setCurrentProject = (projectId) => {
         this.props.handleSetCurrentProject(projectId);
+        this.setState({ showActiveClass : true  });
     }
     
     render() {
 
         let {formClicked} = this.state;
-        let {userProjects} = this.props;
+        let {userProjects} = this.props;    
 
 
         let DisplayProjects = userProjects.map((project) => { 
@@ -39,10 +39,10 @@ export default class Projects extends Component {
                     <div className="project-link-brief">
                         <button 
                             type="button" 
-                            className="link-btn project-link-btn" 
-                            onClick={(e) => this.setCurrentProject(e, project.id)}
+                            className="link-btn project-link-btn"
+                            onClick={() => this.setCurrentProject(project.id)}
                         >
-                            {project.title}
+                            <span className="project-hash">#</span>{project.title}
                         </button>
                     </div>
                 </div>
@@ -52,8 +52,7 @@ export default class Projects extends Component {
 
         return (
             <div className="projects-menu">
-                <div className="title-block">
-                    <img src={ProjectIcon} alt="" className="title-icon" />            
+                <div className="projects-title-block">
                     <h3 className="title-copy">
                         Projects 
                     </h3>

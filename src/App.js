@@ -44,10 +44,17 @@ class App extends Component {
   }
 
 
+  loadEmptyState(){
+    this.setState({ emptyState : true  });
+  }
+
+
 
   loadUserProjects(userId){
 
-    this.setState({ userProjects : []  });
+    this.setState({ 
+      userProjects : []  
+    });
     
     let { userProjects } = this.state;
 
@@ -88,7 +95,7 @@ class App extends Component {
           /> 
         }
 
-        { !loading && user && 
+        { !loading && user &&
           <Home
             user = {this.state.user}
             userProjects = {this.state.userProjects}
@@ -96,7 +103,6 @@ class App extends Component {
             loadUserProjects = {this.loadUserProjects.bind(this)}
           /> 
         }
-
 
       </div>
     );
