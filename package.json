@@ -11,7 +11,7 @@
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.1",
     "react-textarea-autosize": "^7.1.0",
-    "slate": "^0.44.9",
+    "slate": "^0.63.0",
     "slate-react": "^0.21.15",
     "uuidv4": "^2.0.0"
   },
